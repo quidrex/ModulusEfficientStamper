@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LavaGang.MelonLoader" Version="0.7.2"/>
+        <PackageReference Include="UnityModManager" Version="0.32.4"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>..\..\..\..\.local\share\Steam\steamapps\common\Modulus\Modulus_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>..\..\..\..\.local\share\Steam\steamapps\common\Modulus\Modulus_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>
