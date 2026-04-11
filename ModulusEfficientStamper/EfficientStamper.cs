@@ -16,7 +16,7 @@ namespace ModulusEfficientStamper
 
 public class StamperBehaviourAdditionalData
 {
-    public int extraStampShape = -1;
+    public int _extraStampShape = -1;
 }
 
 public static class StamperBehaviourExtension
@@ -35,48 +35,25 @@ internal static class StamperBehaviourPatchTryStampShape
 {
     private static bool Prefix(StamperBehaviour __instance, bool ____isConfigured, ref bool ____hasStampShape0, ref bool ____hasStampShape1)
     {
-        var additionalData = __instance.GetAdditionalData();
-
         if (!____isConfigured)
         {
             __instance.EndActivity();
             return false;
         }
 
-        if (____hasStampShape0 && !____hasStampShape1 && additionalData.extraStampShape == -1)
-        {
-            ____hasStampShape0 = false;
-            additionalData.extraStampShape = 0;
-        }
-
-        if (!____hasStampShape0 && ____hasStampShape1 && additionalData.extraStampShape == -1)
-        {
-            ____hasStampShape1 = false;
-            additionalData.extraStampShape = 1;
-        }
-
-        return true;
-    }
-}
-
-
-[HarmonyPatch(typeof(StamperBehaviour), "OnOutput")]
-internal static class StamperBehaviourPatchOnOutput
-{
-    private static void Postfix(StamperBehaviour __instance, ref bool ____hasStampShape0, ref bool ____hasStampShape1)
-    {
         var additionalData = __instance.GetAdditionalData();
 
-        if (!____hasStampShape0 && additionalData.extraStampShape == 0)
-        {
-            ____hasStampShape0 = true;
-            additionalData.extraStampShape = -1;
-        }
+        ref var extraStampShape = ref additionalData._extraStampShape;
+        (extraStampShape, ____hasStampShape0, ____hasStampShape1) =
+            (extraStampShape, ____hasStampShape0, ____hasStampShape1) switch
+            {
+                (0, false, true) => (-1, true, true),
+                (1, true, false) => (-1, true, true),
+                (-1, true, false) => (0, false, false),
+                (-1, false, true) => (1, false, false),
+                var other => other
+            };
 
-        if (!____hasStampShape1 && additionalData.extraStampShape == 1)
-        {
-            ____hasStampShape1 = true;
-            additionalData.extraStampShape = -1;
-        }
+        return true;
     }
 }
