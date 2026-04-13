@@ -1,24 +1,22 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using Data.FactoryFloor.Behaviours;
-using MelonLoader;
-using ModulusEfficientStamper;
 
-[assembly: MelonInfo(typeof(MyMod), "Efficient Stamper", "0.1.0", "Quidrex")]
-[assembly: MelonGame("Happy Volcano", "Modulus")]
-
-namespace ModulusEfficientStamper
+namespace EfficientStamper
 {
-    public class MyMod : MelonMod
+    public enum ExtraStampShape
     {
+        None,
+        Has0,
+        Has1
     }
 
     public class StamperBehaviourAdditionalData
     {
-        public int _extraStampShape = -1;
+        public ExtraStampShape _extraStampShape = ExtraStampShape.None;
 
         public void Reset()
         {
-            _extraStampShape = -1;
+            _extraStampShape = ExtraStampShape.None;
         }
     }
 

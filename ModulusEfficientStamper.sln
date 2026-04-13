@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulusEfficientStamper", "ModulusEfficientStamper\ModulusEfficientStamper.csproj", "{EA840617-D12B-4D0C-B451-44E36D62F89C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfficientStamper", "EfficientStamper\EfficientStamper.csproj", "{EA840617-D12B-4D0C-B451-44E36D62F89C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 using Data.FactoryFloor.Behaviours;
 using HarmonyLib;
 
-namespace ModulusEfficientStamper
+namespace EfficientStamper
 {
     [HarmonyPatch(typeof(StamperBehaviour), "SetStampConfig")]
     internal static class StamperBehaviourPatchSetStampConfig
