@@ -4,6 +4,13 @@
 
 This mod changes the behavior of Basic and Advanced Stampers to buffer a single additional output. This prevents unwanted scrapping in most circumstances.
 
+## Installation
+
+1. Install [ModulusModLoader](https://github.com/ModulusModding/ModulusModLoader)
+2. Copy `EfficientStamper` directory into
+   * Windows: `%userprofile%\Documents\My Games\Modulus\mods`
+   * Proton: `~/.steam/steam/steamapps/compatdata/2779120/pfx/drive_c/users/steamuser/Documents/My Games/Modulus/mods/`
+
 ## Motivation
 
 In vanilla, the stamper has a built-in overflow scrapper so that output belts (and other buildings) can be filled to capacity independently, which prevents
