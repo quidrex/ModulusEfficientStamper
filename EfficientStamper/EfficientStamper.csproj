@@ -1,23 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
         <Nullable>enable</Nullable>
         <RootNamespace>ModulusEfficientStamper</RootNamespace>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="LavaGang.MelonLoader" Version="0.7.2"/>
-        <PackageReference Include="UnityModManager" Version="0.32.4"/>
+        <Reference Include="0Harmony">
+            <HintPath>..\..\Modulus\BepInEx\core\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>..\..\Modulus\Modulus_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="BepInEx">
+            <HintPath>..\..\Modulus\BepInEx\core\BepInEx.dll</HintPath>
+        </Reference>
+        <Reference Include="ModulusModLoader">
+            <HintPath>..\..\Modulus\BepInEx\plugins\ModulusModLoader\ModulusModLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>..\..\Modulus\Modulus_Data\Managed\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>..\..\Modulus\Modulus_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="Assembly-CSharp">
-            <HintPath>..\..\GameAssemblies\Assembly-CSharp.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.CoreModule">
-            <HintPath>..\..\GameAssemblies\UnityEngine.CoreModule.dll</HintPath>
-        </Reference>
+        <None Include="About\About.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

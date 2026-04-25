@@ -1,12 +1,11 @@
 using Data.FactoryFloor.Behaviours;
 using HarmonyLib;
 
-namespace EfficientStamper
+namespace ModulusEfficientStamper
 {
-    [HarmonyPatch(typeof(StamperBehaviour), "TryStampShape")]
-    internal static class StamperBehaviourPatchTryStampShape
+    internal static class StamperBehaviourPatchTryStampShape<T> where T : ResourceHolderBehaviour
     {
-        private static bool Prefix(StamperBehaviour __instance, bool ____isConfigured, ref bool ____hasStampShape0, ref bool ____hasStampShape1)
+        internal static bool Prefix(T __instance, bool ____isConfigured, ref bool ____hasStampShape0, ref bool ____hasStampShape1)
         {
             if (!____isConfigured)
             {
@@ -14,7 +13,7 @@ namespace EfficientStamper
                 return false;
             }
 
-            var additionalData = __instance.GetAdditionalData();
+            var additionalData = StamperBehaviourAdditionalDataTable<T>.GetAdditionalData(__instance);
             ref var extraStampShape = ref additionalData._extraStampShape;
 
             switch (extraStampShape, ____hasStampShape0, ____hasStampShape1)
@@ -38,6 +37,24 @@ namespace EfficientStamper
             }
 
             return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(StamperBehaviour), "TryStampShape")]
+    internal static class StamperBehaviourPatchTryStampShape
+    {
+        private static bool Prefix(StamperBehaviour __instance, bool ____isConfigured, ref bool ____hasStampShape0, ref bool ____hasStampShape1)
+        {
+            return StamperBehaviourPatchTryStampShape<StamperBehaviour>.Prefix(__instance, ____isConfigured, ref ____hasStampShape0, ref ____hasStampShape1);
+        }
+    }
+
+    [HarmonyPatch(typeof(StamperMK2Behaviour), "TryStampShape")]
+    internal static class StamperMK2BehaviourPatchTryStampShape
+    {
+        private static bool Prefix(StamperMK2Behaviour __instance, bool ____isConfigured, ref bool ____hasStampShape0, ref bool ____hasStampShape1)
+        {
+            return StamperBehaviourPatchTryStampShape<StamperMK2Behaviour>.Prefix(__instance, ____isConfigured, ref ____hasStampShape0, ref ____hasStampShape1);
         }
     }
 }

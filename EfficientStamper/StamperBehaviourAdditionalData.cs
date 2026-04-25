@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Data.FactoryFloor.Behaviours;
 
-namespace EfficientStamper
+namespace ModulusEfficientStamper
 {
     public enum ExtraStampShape
     {
@@ -20,14 +20,14 @@ namespace EfficientStamper
         }
     }
 
-    public static class StamperBehaviourExtension
+    public static class StamperBehaviourAdditionalDataTable<T> where T : ResourceHolderBehaviour
     {
-        private static readonly ConditionalWeakTable<StamperBehaviour, StamperBehaviourAdditionalData> data =
-            new ConditionalWeakTable<StamperBehaviour, StamperBehaviourAdditionalData>();
+        private static readonly ConditionalWeakTable<T, StamperBehaviourAdditionalData> Data =
+            new ConditionalWeakTable<T, StamperBehaviourAdditionalData>();
 
-        public static StamperBehaviourAdditionalData GetAdditionalData(this StamperBehaviour stamperBehaviour)
+        public static StamperBehaviourAdditionalData GetAdditionalData(T stamperBehaviour)
         {
-            return data.GetOrCreateValue(stamperBehaviour);
+            return Data.GetOrCreateValue(stamperBehaviour);
         }
     }
 }
